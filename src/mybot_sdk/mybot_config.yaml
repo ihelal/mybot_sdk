@@ -1,0 +1,98 @@
+Sensors:
+    Ultrasonic:
+            Trigger: 12
+            Front:   26
+            Left:    21
+            Right:   20
+            Back:    16
+            MaxRange: 155
+    LineFollower:
+            L: 17
+            C: 27
+            R: 22
+    Encoder:
+        Front:
+            R: 25
+            L: 8
+        Back:
+            R: 7
+            L: 1
+    
+    IMU:
+        MPU6050:
+            ADDRESS: 0x68
+            PWR_MGMT_1:   0x6B
+            SMPLRT_DIV:   0x19
+            CONFIG:       0x1A
+            GYRO_CONFIG:  0x1B
+            INT_ENABLE:   0x38
+            ACCEL_XOUT_H: 0x3B
+            ACCEL_YOUT_H: 0x3D
+            ACCEL_ZOUT_H: 0x3F
+            GYRO_XOUT_H:  0x43
+            GYRO_YOUT_H:  0x45
+            GYRO_ZOUT_H:  0x47
+
+Actuators:
+    Drive:
+        PWM: 18
+        Front:
+            R: 
+                IN1: 13
+                IN2: 19
+            L: 
+                IN1: 11
+                IN2: 0
+        Back:
+            R: 
+                IN1: 5
+                IN2: 6
+            L: 
+                IN1: 10
+                IN2: 9
+
+Accesories: 
+    LED: 
+        LED_COUNT: 24
+        LED_PIN: 18
+        LED_FREQ_HZ: 800000
+        LED_DMA: 10
+        LED_BRIGHTNESS: 255
+        LED_INVERT: False
+        LED_CHANNEL: 0
+
+
+    ToggleButton: 24
+    PCA9685: 
+        IO0: True
+        IO1: True
+        IO2: True
+        IO3: True
+
+        IO4: False
+        IO5: False
+        IO6: False
+        IO7: False
+        
+        IO8: False
+        IO9: False
+        IO10: False
+        IO11: False
+        
+        IO12: False
+        IO13: False
+        IO14: False
+        IO15: False
+    
+    Arm:
+        DOF: 4
+        DOF1: 1
+        DOF2: 1
+        DOF3: 1
+        DOF4: 1
+
+Extras:
+    IO:
+        IO14: 14
+        IO15: 15
+        IO23: 23

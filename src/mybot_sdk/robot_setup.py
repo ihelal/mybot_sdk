@@ -35,6 +35,14 @@ class Brain():
         GPIO.setwarnings(self.robot_setup["BoardConfig"]["IOWarn"])
         GPIO.setmode(GPIO.BCM)
 
+        self.FL_WHEEL_DIR = 0
+        self.BL_WHEEL_DIR = 0
+        self.BR_WHEEL_DIR = 0
+        self.FR_WHEEL_DIR = 0
+    
+    def cleanExit(self):
+        GPIO.cleanup()
+
     def initBaseMotors(self):
         drive = self.robot_setup["Actuators"]["Drive"]
         front_drive = drive["Front"]
@@ -81,9 +89,25 @@ class Brain():
 
         return self.LINE_LEFT,self.LINE_CENTER,self.LINE_RIGHT
 
+    def initEncoders(self):
+        Encoders = self.robot_setup["Sensors"]["Encoders"]
+
+        GPIO.setup(Encoders["Front"]["L"], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(Encoders["Front"]["R"], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(Encoders["Back"]["L"], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+        GPIO.setup(Encoders["Back"]["R"], GPIO.IN, pull_up_down=GPIO.PUD_UP)
+
+        # self.setPull(Encoders["Front"]["L"],GPIO.FALLING,f1)
+        # self.setPull(Encoders["Back"]["L"],GPIO.FALLING,f2)
+        # self.setPull(Encoders["Back"]["R"],GPIO.FALLING,f3)
+        # self.setPull(Encoders["Front"]["R"],GPIO.FALLING,f4)
+
     def get_input_status(self,pin):
         status = GPIO.input(pin)
         return status
+    
+    def setPull(self,pin,stat,function_name):
+        GPIO.add_event_detect(pin,stat,callback=function_name)
 
     def get_robot_compass(self):
         compass = self.robot_setup["Compass"]
